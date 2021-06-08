@@ -1,12 +1,16 @@
 package com.branchhunters.polishdraughts;
 
+
 // pawn
 public class Pawn {
-    private String color;
+    private String pawnColor;
     private boolean isCrowned;
-    private Coordinates coordinates;
+    Coordinates coordinates;
 
-    public Pawn(String color, boolean isCrowned, Coordinates coordinates) {
+    public Pawn(String color, int x, int y) {
+    pawnColor =  color;
+    isCrowned = false;
+    coordinates = new Coordinates(x,y);
 
 
     }

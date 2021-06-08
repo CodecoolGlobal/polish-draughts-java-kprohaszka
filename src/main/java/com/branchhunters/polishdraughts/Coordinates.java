@@ -2,23 +2,28 @@ package com.branchhunters.polishdraughts;
 
 public class Coordinates {
 
-    private int x;
-    private int y;
+    private int xCoordinate;
+    private int yCoordinate;
 
-    public int getX() {
-        return x;
+    Coordinates(int x, int y) {
+        this.xCoordinate = x;
+        this.yCoordinate = y;
+    }
+
+    public  int getX() {
+        return this.xCoordinate;
     }
 
     public int getY() {
-        return y;
+        return this.yCoordinate;
     }
 
-    public void setX(int x){
-        this.x = x;
+    public void setX(int x) {
+        this.xCoordinate = x;
     }
 
-    public void setY(int y){
-        this.y = y;
+    public void setY(int y) {
+        this.yCoordinate = y;
     }
 
 
