@@ -12,9 +12,34 @@ public class Board {
     }
 
     private Pawn[][] setPawns(Pawn[][] board, int n) {
-        int blackPieces = n * 2;
-        int whitePieces = n * 2;
+        return setWhitePawns(setBlackPawns(board, n),n);
 
+    }
+
+    private Pawn[][] setWhitePawns(Pawn[][] board,int n){
+        int whitePieces = n * 2;
+        for (int row = board.length - 1; row >= 0; row--) {
+            if ((row - 1) % 2 == 0) {
+                for (int i = 0; i < board[row].length; i += 2) {
+                    if (whitePieces > 0) {
+                        board[row][i] = new Pawn("white", row, i);
+                        whitePieces--;
+                    }
+                }
+            } else {
+                for (int i = 1; i < board[row].length; i += 2) {
+                    if (whitePieces > 0) {
+                        board[row][i] = new Pawn("white", row, i);
+                        whitePieces--;
+                    }
+                }
+            }
+        }
+        return board;
+    }
+
+    private Pawn[][] setBlackPawns(Pawn[][] board, int n) {
+        int blackPieces = n * 2;
         for (int row = 0; row < board.length; row++) {
                 if ((row + 1) % 2 == 0) {
                     for (int i = 0; i < board[row].length; i += 2) {
@@ -31,23 +56,6 @@ public class Board {
                         }
                     }
                 }
-        }
-        for (int row = board.length - 1; row >= 0; row--) {
-                if ((row - 1) % 2 == 0) {
-                    for (int i = 0; i < board[row].length; i += 2) {
-                        if (whitePieces > 0) {
-                            board[row][i] = new Pawn("white", row, i);
-                            whitePieces--;
-                        }
-                    }
-                } else {
-                    for (int i = 1; i < board[row].length; i += 2) {
-                        if (whitePieces > 0) {
-                            board[row][i] = new Pawn("white", row, i);
-                            whitePieces--;
-                        }
-                    }
-            }
         }
         return board;
     }
