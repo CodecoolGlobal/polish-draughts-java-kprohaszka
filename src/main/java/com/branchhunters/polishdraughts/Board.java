@@ -17,6 +17,13 @@ public class Board {
         String input = scanner.nextLine();
         n = Integer.parseInt(input); //parse input
 
+        // validate input between values
+        while (n < 10 || n > 20) {
+            System.out.println("Wrong value specified, try between 10 & 20: ");
+            input = scanner.nextLine();
+            n = Integer.parseInt(input);
+        }
+
         // set pawns on board
         board = setPawns(new Pawn[n][n], n);
     }
