@@ -7,7 +7,6 @@ public class Board {
     private Pawn[][] board;
     private Scanner scanner;
     private int n;
-    Pawn pawn;
 
 
     Board() {
@@ -115,12 +114,8 @@ public class Board {
                     }
                 } else {
                     switch (board[row][col].toString()) {
-                        case "black":
-                            displayBoard.append(" " + puck + " ");
-                            break;
-                        case "white":
-                            displayBoard.append("\u001b[33m" + " " + puck + " " + "\u001b[0m");
-                            break;
+                        case "black" -> displayBoard.append(" ").append(puck).append(" ");
+                        case "white" -> displayBoard.append("\u001b[33m" + " ").append(puck).append(" ").append("\u001b[0m");
                     }
                 }
             }
@@ -130,4 +125,12 @@ public class Board {
         System.out.println(displayBoard);
     }
 
+    public void removePawn(int x, int y) {
+        board[x][y] = null;
+    }
+
+    public void movePawn(int fromX, int fromY, int toX, int toY) {
+        board[toX][toY] = board[fromX][fromY];
+        removePawn(fromX, fromY);
+    }
 }

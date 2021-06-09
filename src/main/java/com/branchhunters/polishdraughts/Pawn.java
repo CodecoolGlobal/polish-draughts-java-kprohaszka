@@ -14,6 +14,10 @@ public class Pawn {
 
     }
 
+    public  Coordinates getCoordinates() {
+        return this.coordinates;
+    }
+
 
     public String getColor() {
         return this.pawnColor;
@@ -24,4 +28,5 @@ public class Pawn {
     public String toString() {
         return this.getColor();
     }
+
 }
