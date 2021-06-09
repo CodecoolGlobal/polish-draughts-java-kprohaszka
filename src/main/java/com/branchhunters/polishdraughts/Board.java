@@ -1,7 +1,5 @@
 package com.branchhunters.polishdraughts;
 
-import com.branchhunters.polishdraughts.Coordinates;
-
 import java.util.Arrays;
 import java.util.Scanner;
 
@@ -9,8 +7,9 @@ import java.util.Scanner;
 public class Board {
     private Pawn[][] board;
     private Scanner scanner;
+    private int n;
 
-    Board(int n) {
+    Board() {
         // specify board size
         scanner = new Scanner(System.in);
         System.out.println("Type in an integer between 10 & 20 to specify board size: ");

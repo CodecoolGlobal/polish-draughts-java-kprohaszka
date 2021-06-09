@@ -1,5 +1,4 @@
 package com.branchhunters.polishdraughts;
-import com.branchhunters.polishdraughts.Board;
 
 public class Game {
 
@@ -7,7 +6,7 @@ public class Game {
     }
 
     public static void main(String[] args) {
-    Board board = new Board(10);
+    Board board = new Board();
         Board.printBoard(board.getBoard());
     }
 }
