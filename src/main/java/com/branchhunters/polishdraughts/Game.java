@@ -17,6 +17,11 @@ public class Game {
         System.out.println("Hit \"ENTER\" to Start");
         Scanner scanner = new Scanner(System.in);
         scanner.nextLine();
+        clearScreen();
+    }
+    public static void clearScreen() {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
     }
     public void start() {
         Board board = new Board();
