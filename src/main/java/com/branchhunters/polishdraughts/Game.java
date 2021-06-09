@@ -25,6 +25,7 @@ public class Game {
     }
     public void start() {
         Board board = new Board();
+        clearScreen();
         System.out.println("White moves first...");
         Board.printBoard(board.getBoard());
     }
