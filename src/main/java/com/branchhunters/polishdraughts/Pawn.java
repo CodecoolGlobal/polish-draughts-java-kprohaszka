@@ -12,6 +12,10 @@ public class Pawn {
     isCrowned = false;
     coordinates = new Coordinates(x,y);
 
-
     }
+
+    public  String getColor(){
+        return this.pawnColor;
+    }
+
 }

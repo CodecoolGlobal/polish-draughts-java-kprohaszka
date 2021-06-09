@@ -1,7 +1,6 @@
 package com.branchhunters.polishdraughts;
 
-import java.util.Arrays;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class Board {
@@ -88,9 +87,35 @@ public class Board {
         return board;
     }
 
+
+    @Override
+    public String toString() {
+        char[] abc = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
+        StringBuilder displayBoard = new StringBuilder("  ");
+        for (int row = 0; row < board.length; row++) {
+            displayBoard.append(row + 1).append("  ");
+        }
+        displayBoard.append("\n");
+        for (int row = 0; row < board.length; row++) {
+            displayBoard.append(abc[row]).append("   ");
+            for (int col = 0; col < board[row].length; col++) {
+                if ((row + col) % 2 == 0) {
+                    displayBoard.append((char) 176);
+                } else {
+                    displayBoard.append("   ");
+                }
+            }
+            displayBoard.append("\n");
+
+        }
+        System.out.println( displayBoard.toString().getClass().getSimpleName());
+        return displayBoard.toString();
+    }
+
+
     public static void printBoard(Pawn[][] board) {
         for (Pawn[] row : board) {
-            System.out.println(Arrays.toString(row));
+            System.out.println(board.toString());
         }
     }
 }
