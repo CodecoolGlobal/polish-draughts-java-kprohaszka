@@ -7,6 +7,8 @@ public class Board {
     private Pawn[][] board;
     private Scanner scanner;
     private int n;
+    Pawn pawn;
+
 
     Board() {
         // specify board size
@@ -25,6 +27,7 @@ public class Board {
         // set pawns on board
         board = setPawns(new Pawn[n][n], n);
     }
+
 
     private Pawn[][] setPawns(Pawn[][] board, int n) {
         return setWhitePawns(setBlackPawns(board, n), n);
@@ -88,34 +91,43 @@ public class Board {
     }
 
 
-    @Override
-    public String toString() {
+    public static void printBoard(Pawn[][] board) {
+        int whitePawnCode = (int) 0x26AB;
+        String puck = Character.toString((char) whitePawnCode);
         char[] abc = {'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'};
-        StringBuilder displayBoard = new StringBuilder("  ");
+        StringBuilder displayBoard = new StringBuilder("    ");
         for (int row = 0; row < board.length; row++) {
-            displayBoard.append(row + 1).append("  ");
+            if (row < 9) {
+                displayBoard.append(row + 1).append("  ");
+            } else {
+                displayBoard.append(row + 1).append(" ");
+            }
         }
         displayBoard.append("\n");
         for (int row = 0; row < board.length; row++) {
-            displayBoard.append(abc[row]).append("   ");
+            displayBoard.append(abc[row]).append("  ");
             for (int col = 0; col < board[row].length; col++) {
-                if ((row + col) % 2 == 0) {
-                    displayBoard.append((char) 176);
+                if (board[row][col] == null) {
+                    if ((row + col) % 2 == 0) {
+                        displayBoard.append("\u001b[47;1m" + "   " + "\u001b[0m");
+                    } else {
+                        displayBoard.append("   ");
+                    }
                 } else {
-                    displayBoard.append("   ");
+                    switch (board[row][col].toString()) {
+                        case "black":
+                            displayBoard.append(" " + puck + " ");
+                            break;
+                        case "white":
+                            displayBoard.append("\u001b[33m" + " " + puck + " " + "\u001b[0m");
+                            break;
+                    }
                 }
             }
             displayBoard.append("\n");
 
         }
-        System.out.println( displayBoard.toString().getClass().getSimpleName());
-        return displayBoard.toString();
+        System.out.println(displayBoard);
     }
 
-
-    public static void printBoard(Pawn[][] board) {
-        for (Pawn[] row : board) {
-            System.out.println(board.toString());
-        }
-    }
 }

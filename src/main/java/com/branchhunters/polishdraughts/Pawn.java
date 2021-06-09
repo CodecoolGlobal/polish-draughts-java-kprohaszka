@@ -8,14 +8,20 @@ public class Pawn {
     Coordinates coordinates;
 
     public Pawn(String color, int x, int y) {
-    pawnColor =  color;
-    isCrowned = false;
-    coordinates = new Coordinates(x,y);
+        pawnColor = color;
+        isCrowned = false;
+        coordinates = new Coordinates(x, y);
 
     }
 
-    public  String getColor(){
+
+    public String getColor() {
         return this.pawnColor;
     }
 
+
+    @Override
+    public String toString() {
+        return this.getColor();
+    }
 }
