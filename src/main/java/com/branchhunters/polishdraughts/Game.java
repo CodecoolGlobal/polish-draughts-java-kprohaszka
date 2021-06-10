@@ -15,7 +15,6 @@ public class Game {
         menu();
     }
 
-
     public void menu() throws InterruptedException {
         System.out.println("POLISH DRAUGHTS");
         TimeUnit.SECONDS.sleep(2);
@@ -34,15 +33,18 @@ public class Game {
     }
 
     public void start() {
+        int player = 1;
         promptEnterKey();
         this.board = new Board();
         clearScreen();
         this.gameIsRunning = true;
         while (gameIsRunning) {
             playRound();
-            Board.movePawn();
+            board.movePawn();
+            player = player == 1 ? 2 : 1;
         }
     }
+
 
     private void playRound() {
         clearScreen();
@@ -100,9 +102,12 @@ public class Game {
 
     public static boolean canHit(Pawn[][] board, int fromX, int fromY, int toX, int toY) {
         int[] enemyCoordinates = getEnemyCoordinates(fromX, fromY, toX, toY);
-        return !board[enemyCoordinates[0]][enemyCoordinates[1]].toString().equals(board[fromX][fromY].toString());
+        if (enemyCoordinates == null) {
+            return false;
+        } else {
+            return !board[enemyCoordinates[0]][enemyCoordinates[1]].toString().equals(board[fromX][fromY].toString());
+        }
     }
-
 
     public static void hitEnemy(Pawn[][] board, int fromX, int fromY, int toX, int toY) {
         int[] enemyCoordinates = getEnemyCoordinates(fromX, fromY, toX, toY);
@@ -142,6 +147,7 @@ public class Game {
         }
     }
 
+
     public static int[] getMove() {
         Scanner scanner;
         System.out.println("Please enter a coordinate!");
@@ -150,7 +156,7 @@ public class Game {
         int YCoordinate = -1;
         String coordinates = scanner.nextLine();
         XCoordinate = (int) coordinates.toLowerCase().charAt(0) - 97;
-        YCoordinate = coordinates.charAt(1) - 48;
+        YCoordinate = coordinates.charAt(1) - 49;
         System.out.println(Arrays.toString(new int[]{XCoordinate, YCoordinate}));
         return new int[]{XCoordinate, YCoordinate};
     }

@@ -9,6 +9,7 @@ public class Board {
     private Pawn[][] board;
     private Scanner scanner;
     private int n;
+    private Game game;
 
 
     Board() {
@@ -140,25 +141,33 @@ public class Board {
         return Game.getMove();
     }
 
-    public void movePawn(Pawn[][] board) {
+
+    public int[] getCoordinates(){
+    int[] selectedPawn = Game.getMove();
+    int coordX = selectedPawn[0];
+    int coordY = selectedPawn[1];
+    return new int[]{coordX,coordY};}
+
+
+
+    public void movePawn() {
         int[] selectedPawn = Game.getMove();
         int fromX = selectedPawn[0];
         int fromY = selectedPawn[1];
         int[] selectedField = Game.getMove();
         int toX = selectedField[0];
         int toY = selectedField[1];
-        boolean canHit = Game.canHit(board, fromX, fromY, toX, toY);
         String pawnColor = board[fromX][fromY].toString();
         if ((pawnColor.equals("black") && (toX == (fromX + 1) && toY == (fromY + 1))) ||
                 (pawnColor.equals("black") && (toX == (fromX + 1) && toY == (fromY - 1)))) {
-            if (canHit) {
+            if (Game.canHit(board, fromX, fromY, toX, toY)) {
                 Game.hitEnemy(board, fromX, fromY, toX, toY);
             }
             board[toX][toY] = board[fromX][fromY];
             removePawn(board, fromX, fromY);
         } else if ((pawnColor.equals("white") && (toX == (fromX - 1) && toY == (fromY + 1))) ||
                 (pawnColor.equals("white") && (toX == (fromX -1) && toY == (fromY - 1)))) {
-            if (canHit) {
+            if (Game.canHit(board, fromX, fromY, toX, toY)) {
                 Game.hitEnemy(board, fromX, fromY, toX, toY);
             }
             board[toX][toY] = board[fromX][fromY];
