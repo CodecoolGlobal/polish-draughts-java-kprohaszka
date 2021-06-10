@@ -1,7 +1,5 @@
 package com.branchhunters.polishdraughts;
 
-import jdk.swing.interop.SwingInterOpUtils;
-
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
