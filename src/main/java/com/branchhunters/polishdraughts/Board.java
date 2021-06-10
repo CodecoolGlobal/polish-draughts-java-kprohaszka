@@ -142,14 +142,6 @@ public class Board {
     }
 
 
-    public int[] getCoordinates(){
-    int[] selectedPawn = Game.getMove();
-    int coordX = selectedPawn[0];
-    int coordY = selectedPawn[1];
-    return new int[]{coordX,coordY};}
-
-
-
     public void movePawn() {
         int[] selectedPawn = Game.getMove();
         int fromX = selectedPawn[0];
