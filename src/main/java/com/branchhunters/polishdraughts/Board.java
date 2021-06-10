@@ -30,6 +30,7 @@ public class Board {
     }
 
 
+
     private Pawn[][] setPawns(Pawn[][] board, int n) {
         return setWhitePawns(setBlackPawns(board, n), n);
 
@@ -135,7 +136,17 @@ public class Board {
         board[x][y] = null;
     }
 
-    public void movePawn(int fromX, int fromY, int toX, int toY) {
+    public int[] selectPawn() {
+        return Game.getMove();
+    }
+
+    public void movePawn(Pawn[][] board) {
+        int[] selectedPawn = Game.getMove();
+        int fromX = selectedPawn[0];
+        int fromY = selectedPawn[1];
+        int[] selectedField = Game.getMove();
+        int toX = selectedField[0];
+        int toY = selectedField[1];
         boolean canHit = Game.canHit(board, fromX, fromY, toX, toY);
         String pawnColor = board[fromX][fromY].toString();
         if ((pawnColor.equals("black") && (toX == (fromX + 1) && toY == (fromY + 1))) ||
@@ -145,7 +156,7 @@ public class Board {
             }
             board[toX][toY] = board[fromX][fromY];
             removePawn(board, fromX, fromY);
-        }else if ((pawnColor.equals("white") && (toX == (fromX -1) && toY == (fromY + 1))) ||
+        } else if ((pawnColor.equals("white") && (toX == (fromX - 1) && toY == (fromY + 1))) ||
                 (pawnColor.equals("white") && (toX == (fromX -1) && toY == (fromY - 1)))) {
             if (canHit) {
                 Game.hitEnemy(board, fromX, fromY, toX, toY);

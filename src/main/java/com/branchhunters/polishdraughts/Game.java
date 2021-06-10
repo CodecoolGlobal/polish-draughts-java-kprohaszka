@@ -1,8 +1,11 @@
 package com.branchhunters.polishdraughts;
 
+import java.util.Arrays;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
+
 import com.branchhunters.polishdraughts.Board.*;
+
 
 public class Game {
     private Board board;
@@ -16,7 +19,6 @@ public class Game {
     public void menu() throws InterruptedException {
         System.out.println("POLISH DRAUGHTS");
         TimeUnit.SECONDS.sleep(2);
-        promptEnterKey();
     }
 
     public void promptEnterKey() {
@@ -32,11 +34,13 @@ public class Game {
     }
 
     public void start() {
+        promptEnterKey();
         this.board = new Board();
         clearScreen();
         this.gameIsRunning = true;
         while (gameIsRunning) {
             playRound();
+            Board.movePawn();
         }
     }
 
@@ -44,7 +48,6 @@ public class Game {
         clearScreen();
         System.out.println("White moves first...");
         Board.printBoard(board.getBoard());
-        promptEnterKey();
 
     }
 
@@ -106,6 +109,50 @@ public class Game {
         if (adjacentPawnCheck(board, fromX, fromY)) {
             Board.removePawn(board, enemyCoordinates[0], enemyCoordinates[1]);
         }
+    }
+
+    public String checkForWinner(Pawn[][] board) {
+        String defeatedOpponent = checkForPawns(board);
+        if (defeatedOpponent.equals("white")) {
+            return "Black has won";
+        } else if (defeatedOpponent.equals("black")) {
+            return "White has won";
+        }
+        return "No winner yet";
+    }
+
+    public String checkForPawns(Pawn[][] board) {
+        int blackPucks = 0;
+        int whitePucks = 0;
+        for (int row = 0; row < board.length; row++) {
+            for (int col = 0; col < row; col++) {
+                if (board[row][col].toString().equals("white")) {
+                    whitePucks += 1;
+                } else if (board[row][col].toString().equals("black")) {
+                    blackPucks += 1;
+                }
+            }
+        }
+        if (blackPucks == 0) {
+            return "white";
+        } else if (whitePucks == 0) {
+            return "black";
+        } else {
+            return "neither";
+        }
+    }
+
+    public static int[] getMove() {
+        Scanner scanner;
+        System.out.println("Please enter a coordinate!");
+        scanner = new Scanner(System.in);
+        int XCoordinate = -1;
+        int YCoordinate = -1;
+        String coordinates = scanner.nextLine();
+        XCoordinate = (int) coordinates.toLowerCase().charAt(0) - 97;
+        YCoordinate = coordinates.charAt(1) - 48;
+        System.out.println(Arrays.toString(new int[]{XCoordinate, YCoordinate}));
+        return new int[]{XCoordinate, YCoordinate};
     }
 
 
