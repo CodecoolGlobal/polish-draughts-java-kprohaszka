@@ -71,14 +71,41 @@ public class Game {
         return false;
     }
 
-    public boolean adjacentPawnCheck(Pawn[][] board, int fromX, int fromY) {
+    public static boolean adjacentPawnCheck(Pawn[][] board, int fromX, int fromY) {
         return board[fromX + 1][fromY + 1] != null || board[fromX + 1][fromY - 1] != null ||
                 board[fromX - 1][fromY + 1] != null || board[fromX - 1][fromY - 1] != null;
     }
 
-    public void hit(Pawn[][] board, int fromX, int fromY, int toX, int toY) {
-        Board.removePawn(board, fromX, fromY);
-        board[toX][toY] = board[fromX][fromY];
+
+    public static int[] getEnemyCoordinates(int fromX, int fromY, int toX, int toY) {
+        if (((toX == (fromX + 2) && toY == (fromY + 2))) ||
+                ((fromX == (toX - 2) && fromY == (toY - 2)))) {
+            return new int[]{fromX + 1, fromY + 1};
+        } else if (((toX == (fromX + 2) && toY == (fromY - 2))) ||
+                (fromX == (toX - 2) && fromY == (toY + 2))) {
+            return new int[]{fromX + 1, fromY - 1};
+        } else if (((toX == (fromX - 2) && toY == (fromY - 2))) ||
+                ((fromX == (toX + 2) && fromY == (toY + 2)))) {
+            return new int[]{fromX - 1, fromY - 1};
+        } else if (((toX == (fromX - 2) && toY == (fromY + 2))) ||
+                ((fromX == (toX + 2) && fromY == (toY - 2)))) {
+            return new int[]{fromX - 1, fromY + 1};
+        }
+        return null;
+    }
+
+
+    public static boolean canHit(Pawn[][] board, int fromX, int fromY, int toX, int toY) {
+        int[] enemyCoordinates = getEnemyCoordinates(fromX, fromY, toX, toY);
+        return !board[enemyCoordinates[0]][enemyCoordinates[1]].toString().equals(board[fromX][fromY].toString());
+    }
+
+
+    public static void hitEnemy(Pawn[][] board, int fromX, int fromY, int toX, int toY) {
+        int[] enemyCoordinates = getEnemyCoordinates(fromX, fromY, toX, toY);
+        if (adjacentPawnCheck(board, fromX, fromY)) {
+            Board.removePawn(board, enemyCoordinates[0], enemyCoordinates[1]);
+        }
     }
 
 
