@@ -51,7 +51,11 @@ public class Game {
         promptEnterKey();
 
     }
-    public boolean CoordinateIsEmpty(Pawn[][] board, int toX, int toY){
+    public boolean tryToMakeMove(Pawn[][] board, int fromX, int fromY, int toX, int toY){
+        return (startCoordinateIsAPawn(board,fromX,fromY) && coordinateIsEmpty(board,toX,toY));
+    }
+
+    public boolean coordinateIsEmpty(Pawn[][] board, int toX, int toY){
         return board[toX][toY] == null;
     }
     public boolean startCoordinateIsAPawn(Pawn[][] board, int fromX, int fromY){
