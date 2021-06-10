@@ -38,8 +38,6 @@ public class Game {
     public void start() {
         this.board = new Board();
         clearScreen();
-        System.out.println("White moves first...");
-        Board.printBoard(board.getBoard());
         this.gameIsRunning = true;
         while (gameIsRunning) {
             playRound();
@@ -48,6 +46,7 @@ public class Game {
 
     private void playRound() {
         clearScreen();
+        System.out.println("White moves first...");
         Board.printBoard(board.getBoard());
         promptEnterKey();
 
