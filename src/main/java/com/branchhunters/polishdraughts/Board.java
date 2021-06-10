@@ -2,6 +2,8 @@ package com.branchhunters.polishdraughts;
 
 import java.util.*;
 
+import com.branchhunters.polishdraughts.Game.*;
+
 
 public class Board {
     private Pawn[][] board;
@@ -134,15 +136,22 @@ public class Board {
     }
 
     public void movePawn(int fromX, int fromY, int toX, int toY) {
+        boolean canHit = Game.canHit(board, fromX, fromY, toX, toY);
         String pawnColor = board[fromX][fromY].toString();
         if ((pawnColor.equals("black") && (toX == (fromX + 1) && toY == (fromY + 1))) ||
                 (pawnColor.equals("black") && (toX == (fromX + 1) && toY == (fromY - 1)))) {
-            removePawn(board, fromX, fromY);
+            if (canHit) {
+                Game.hitEnemy(board, fromX, fromY, toX, toY);
+            }
             board[toX][toY] = board[fromX][fromY];
+            removePawn(board, fromX, fromY);
         }else if ((pawnColor.equals("white") && (toX == (fromX -1) && toY == (fromY + 1))) ||
                 (pawnColor.equals("white") && (toX == (fromX -1) && toY == (fromY - 1)))) {
-            removePawn(board, fromX, fromY);
+            if (canHit) {
+                Game.hitEnemy(board, fromX, fromY, toX, toY);
+            }
             board[toX][toY] = board[fromX][fromY];
+            removePawn(board, fromX, fromY);
         }
     }
 
