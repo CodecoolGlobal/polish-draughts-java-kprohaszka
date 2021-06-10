@@ -115,10 +115,10 @@ public class Board {
                 } else {
                     switch (board[row][col].toString()) {
                         case "black":
-                            displayBoard.append(" ").append(puck).append(" ");
+                            displayBoard.append("\u001b[33m" + " ").append(puck).append(" ").append("\u001b[0m");
                             break;
                         case "white":
-                            displayBoard.append("\u001b[33m" + " ").append(puck).append(" ").append("\u001b[0m");
+                            displayBoard.append(" ").append(puck).append(" ");
                             break;
                     }
                 }
