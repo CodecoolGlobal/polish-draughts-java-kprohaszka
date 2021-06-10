@@ -129,7 +129,7 @@ public class Board {
         System.out.println(displayBoard);
     }
 
-    public void removePawn(int x, int y) {
+    public static void removePawn(Pawn[][] board, int x, int y) {
         board[x][y] = null;
     }
 
@@ -137,11 +137,11 @@ public class Board {
         String pawnColor = board[fromX][fromY].toString();
         if ((pawnColor.equals("black") && (toX == (fromX + 1) && toY == (fromY + 1))) ||
                 (pawnColor.equals("black") && (toX == (fromX + 1) && toY == (fromY - 1)))) {
-            removePawn(fromX, fromY);
+            removePawn(board, fromX, fromY);
             board[toX][toY] = board[fromX][fromY];
         }else if ((pawnColor.equals("white") && (toX == (fromX -1) && toY == (fromY + 1))) ||
                 (pawnColor.equals("white") && (toX == (fromX -1) && toY == (fromY - 1)))) {
-            removePawn(fromX, fromY);
+            removePawn(board, fromX, fromY);
             board[toX][toY] = board[fromX][fromY];
         }
     }
