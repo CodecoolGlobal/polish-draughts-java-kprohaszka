@@ -136,8 +136,7 @@ public class Board {
     public void movePawn(int fromX, int fromY, int toX, int toY) {
         String pawnColor = board[fromX][fromY].toString();
         if ((pawnColor.equals("black") && (toX == (fromX + 1) && toY == (fromY + 1))) ||
-                (pawnColor.equals("black") && (toX == (fromX + 1) && toY == (fromY - 1))))
-        {
+                (pawnColor.equals("black") && (toX == (fromX + 1) && toY == (fromY - 1)))) {
             removePawn(fromX, fromY);
             board[toX][toY] = board[fromX][fromY];
         }else if ((pawnColor.equals("white") && (toX == (fromX -1) && toY == (fromY + 1))) ||
@@ -146,4 +145,5 @@ public class Board {
             board[toX][toY] = board[fromX][fromY];
         }
     }
+
 }
