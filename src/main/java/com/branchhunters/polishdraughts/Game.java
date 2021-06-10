@@ -100,6 +100,24 @@ public class Game {
     }
 
 
+    public static int[] moveAfterAttack(Pawn[][] board, int fromX, int fromY, int toX, int toY) {
+        if (((toX == (fromX + 2) && toY == (fromY + 2))) ||
+                ((fromX == (toX - 2) && fromY == (toY - 2)))) {
+            board[toX][toY] = board[fromX][fromY];
+        } else if (((toX == (fromX + 2) && toY == (fromY - 2))) ||
+                (fromX == (toX - 2) && fromY == (toY + 2))) {
+            board[toX][toY] = board[fromX][fromY];
+        } else if (((toX == (fromX - 2) && toY == (fromY - 2))) ||
+                ((fromX == (toX + 2) && fromY == (toY + 2)))) {
+            board[toX][toY] = board[fromX][fromY];
+        } else if (((toX == (fromX - 2) && toY == (fromY + 2))) ||
+                ((fromX == (toX + 2) && fromY == (toY - 2)))) {
+            board[toX][toY] = board[fromX][fromY];
+        }
+        return null;
+    }
+
+
     public static boolean canHit(Pawn[][] board, int fromX, int fromY, int toX, int toY) {
         int[] enemyCoordinates = getEnemyCoordinates(fromX, fromY, toX, toY);
         if (enemyCoordinates == null) {

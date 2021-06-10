@@ -150,18 +150,16 @@ public class Board {
         int toX = selectedField[0];
         int toY = selectedField[1];
         String pawnColor = board[fromX][fromY].toString();
+        if (Game.canHit(board, fromX, fromY, toX, toY)) {
+            Game.hitEnemy(board, fromX, fromY, toX, toY);
+            Game.moveAfterAttack(board, fromX, fromY, toX, toY);
+        }
         if ((pawnColor.equals("black") && (toX == (fromX + 1) && toY == (fromY + 1))) ||
                 (pawnColor.equals("black") && (toX == (fromX + 1) && toY == (fromY - 1)))) {
-            if (Game.canHit(board, fromX, fromY, toX, toY)) {
-                Game.hitEnemy(board, fromX, fromY, toX, toY);
-            }
             board[toX][toY] = board[fromX][fromY];
             removePawn(board, fromX, fromY);
         } else if ((pawnColor.equals("white") && (toX == (fromX - 1) && toY == (fromY + 1))) ||
-                (pawnColor.equals("white") && (toX == (fromX -1) && toY == (fromY - 1)))) {
-            if (Game.canHit(board, fromX, fromY, toX, toY)) {
-                Game.hitEnemy(board, fromX, fromY, toX, toY);
-            }
+                (pawnColor.equals("white") && (toX == (fromX - 1) && toY == (fromY - 1)))) {
             board[toX][toY] = board[fromX][fromY];
             removePawn(board, fromX, fromY);
         }
