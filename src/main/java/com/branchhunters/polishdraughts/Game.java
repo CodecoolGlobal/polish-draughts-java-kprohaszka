@@ -3,17 +3,16 @@ package com.branchhunters.polishdraughts;
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
 
+import com.branchhunters.polishdraughts.Board.*;
+
 public class Game {
-    private Board board;
+    private Board board = new Board();
     private boolean gameIsRunning;
 
     public Game() throws InterruptedException {
         menu();
     }
 
-    public Board getBoard() {
-        return this.board;
-    }
 
     public void menu() throws InterruptedException {
         System.out.println("POLISH DRAUGHTS");
@@ -71,6 +70,16 @@ public class Game {
             }
         }
         return false;
+    }
+
+    public boolean adjecentPawnCheck(Pawn[][] board, int fromX, int fromY) {
+        return board[fromX + 1][fromY + 1] != null || board[fromX + 1][fromY - 1] != null ||
+                board[fromX - 1][fromY + 1] != null || board[fromX - 1][fromY - 1] != null;
+    }
+
+    public void hit(int fromX, int fromY, int toX, int toY) {
+        board.removePawn(fromX, fromY);
+        //board[toX][toY] = board[fromX][fromY];
     }
 
 
