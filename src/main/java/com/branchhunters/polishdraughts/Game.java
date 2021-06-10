@@ -2,11 +2,10 @@ package com.branchhunters.polishdraughts;
 
 import java.util.Scanner;
 import java.util.concurrent.TimeUnit;
-
 import com.branchhunters.polishdraughts.Board.*;
 
 public class Game {
-    private Board board = new Board();
+    private Board board;
     private boolean gameIsRunning;
 
     public Game() throws InterruptedException {
@@ -77,9 +76,9 @@ public class Game {
                 board[fromX - 1][fromY + 1] != null || board[fromX - 1][fromY - 1] != null;
     }
 
-    public void hit(int fromX, int fromY, int toX, int toY) {
-        board.removePawn(fromX, fromY);
-        //board[toX][toY] = board[fromX][fromY];
+    public void hit(Pawn[][] board, int fromX, int fromY, int toX, int toY) {
+        Board.removePawn(board, fromX, fromY);
+        board[toX][toY] = board[fromX][fromY];
     }
 
 
