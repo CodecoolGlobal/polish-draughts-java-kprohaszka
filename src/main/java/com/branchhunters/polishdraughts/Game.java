@@ -51,6 +51,12 @@ public class Game {
         promptEnterKey();
 
     }
+    public boolean CoordinateIsEmpty(Pawn[][] board, int toX, int toY){
+        return board[toX][toY] == null;
+    }
+    public boolean startCoordinateIsAPawn(Pawn[][] board, int fromX, int fromY){
+        return board[fromX][fromY] != null;
+    }
 
 
     public static void main(String[] args) throws InterruptedException {

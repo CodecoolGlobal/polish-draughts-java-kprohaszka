@@ -137,8 +137,4 @@ public class Board {
         board[toX][toY] = board[fromX][fromY];
         removePawn(fromX, fromY);
     }
-
-    public boolean CoordinateIsEmpty(Pawn[][] board, int toX, int toY){
-        return board[toX][toY] == null;
-    }
 }
