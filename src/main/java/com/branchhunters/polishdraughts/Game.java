@@ -71,7 +71,7 @@ public class Game {
         return false;
     }
 
-    public boolean adjecentPawnCheck(Pawn[][] board, int fromX, int fromY) {
+    public boolean adjacentPawnCheck(Pawn[][] board, int fromX, int fromY) {
         return board[fromX + 1][fromY + 1] != null || board[fromX + 1][fromY - 1] != null ||
                 board[fromX - 1][fromY + 1] != null || board[fromX - 1][fromY - 1] != null;
     }
